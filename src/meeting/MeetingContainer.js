@@ -20,7 +20,7 @@ export function MeetingContainer({
   onMeetingLeave,
   setIsMeetingLeft,
   language,
-  setLanguage
+  setLanguage,
 }) {
   const {
     setSelectedMic,

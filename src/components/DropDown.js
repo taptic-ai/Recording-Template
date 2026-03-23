@@ -15,7 +15,8 @@ export default function DropDown({
   audioTrack,
   micOn,
   didDeviceChange,
-  setDidDeviceChange
+  setDidDeviceChange,
+  recordingFailDelay
 }) {
 
   const {
@@ -138,7 +139,7 @@ export default function DropDown({
       setTimeout(() => {
         clearInterval(intervalRef.current)
         stopRecording();
-      }, 7000)
+      }, recordingFailDelay)
     } catch (err) {
       console.log("Error in MediaRecorder:", err)
     }

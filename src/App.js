@@ -12,6 +12,7 @@ function App() {
   const [participantName, setParticipantName] = useState("");
   const [micOn, setMicOn] = useState(false);
   const [webcamOn, setWebcamOn] = useState(false);
+  const [recordingFailDelay, setRecordingFailDelay] = useState(2 * 60 * 1000);
   const [customAudioStream, setCustomAudioStream] = useState(null);
   const [customVideoStream, setCustomVideoStream] = useState(null)
   const [isMeetingStarted, setMeetingStarted] = useState(false);
@@ -31,6 +32,11 @@ function App() {
     const tokenFromUrl = urlParams.get('token');
     const participantIdFromUrl = urlParams.get('participantId');
     const participantNameFromUrl = urlParams.get('participantName');
+    const recordingFailDelayFromUrl = urlParams.get('recordingFailDelay');
+
+    if (recordingFailDelayFromUrl && !isNaN(recordingFailDelayFromUrl)) {
+      setRecordingFailDelay(parseInt(recordingFailDelayFromUrl));
+    }
 
     if (meetingIdFromUrl && tokenFromUrl) {
       setMeetingId(meetingIdFromUrl);
@@ -100,6 +106,7 @@ function App() {
               setIsMeetingLeft={setIsMeetingLeft}
               language={language}
               setLanguage={setLanguage}
+              recordingFailDelay={recordingFailDelay}
             />
           </MeetingProvider>
 
@@ -127,6 +134,9 @@ function App() {
             }}
             startMeeting={isMeetingStarted}
             setIsMeetingLeft={setIsMeetingLeft}
+            recordingFailDelay={
+              recordingFailDelay
+            }
           />
         )}
       </MeetingAppProvider>

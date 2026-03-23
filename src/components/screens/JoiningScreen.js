@@ -33,6 +33,7 @@ export function JoiningScreen({
   setCustomVideoStream,
   micOn,
   webcamOn,
+  recordingFailDelay
 }) {
   const {
     selectedWebcam,
@@ -423,7 +424,7 @@ export function JoiningScreen({
                         className={
                           "rounded-[10px] h-full w-full object-cover flex items-center justify-center flip"
                         }
-                      
+
                       />
 
                       <div className="absolute xl:bottom-6 bottom-4 left-0 right-0">
@@ -468,6 +469,7 @@ export function JoiningScreen({
                             micOn={micOn}
                             didDeviceChange={didDeviceChange}
                             setDidDeviceChange={setDidDeviceChange}
+                            recordingFailDelay={recordingFailDelay}
                           />
                         </div>
                         <div className={`lg:ml-3 ${isMobile ? "w-full" : "w-1/3 "}`}>
